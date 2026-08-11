@@ -3,48 +3,29 @@ plugins {
 }
 
 android {
-    namespace "com.snakegame.bekarys2026"
+    namespace 'com.snakegame.bekarys2026'
     compileSdk 35
-    buildToolsVersion "35.0.0"
 
     defaultConfig {
-        applicationId "com.bekarys.snakecube"
+        applicationId "com.snakegame.bekarys2026"
         minSdk 21
         targetSdk 35
-        versionCode 4
-        versionName "1.3"
-        
-        ndk {
-            abiFilters 'arm64-v8a'
-        }
-    }
+        versionCode 1
+        versionName "1.0"
 
-    signingConfigs {
-        release {
-            storeFile file('release-key.jks')
-            storePassword project.hasProperty('KEYSTORE_PASSWORD') ? KEYSTORE_PASSWORD : ''
-            keyAlias project.hasProperty('KEY_ALIAS') ? KEY_ALIAS : ''
-            keyPassword project.hasProperty('KEY_PASSWORD') ? KEY_PASSWORD : ''
-        }
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            signingConfig signingConfigs.release
             minifyEnabled false
-        }
-    }
-
-    externalNativeBuild {
-        cmake {
-            path "CMakeLists.txt"
-            version "3.22.1"
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 }
 
