@@ -20,6 +20,11 @@ jobs:
         with:
           gradle-version: '8.5'
 
+      - name: Setup CMake
+        uses: jwlawson/actions-setup-cmake@v2
+        with:
+          cmake-version: 'latest'
+
       - name: Build App Bundle (AAB)
         run: gradle :app:bundleRelease
 
