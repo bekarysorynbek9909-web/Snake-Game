@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace 'com.bekarys.snakecube'
+    namespace "com.snakegame.bekarys2026"
     compileSdk 35
     buildToolsVersion "35.0.0"
 
