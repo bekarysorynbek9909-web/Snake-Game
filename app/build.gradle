@@ -3,20 +3,21 @@ plugins {
 }
 
 android {
-    namespace "com.bekarys.snakecube"
-    compileSdk 33
+    
+    signingConfigs {
+        release {
+            // Файл будет создан автоматически во время сборки GitHub Actions
+            storeFile file('release-key.jks')
+            storePassword System.getenv("KEYSTORE_PASSWORD")
+            keyAlias System.getenv("KEY_ALIAS")
+            keyPassword System.getenv("KEY_PASSWORD")
+        }
+    }
 
-    defaultConfig {
-        applicationId "com.bekarys.snakecube"
-        minSdk 26
-        targetSdk 33
-        versionCode 1
-        versionName "1.0"
-
-        externalNativeBuild {
-            cmake {
-                cppFlags ""
-                abiFilters "arm64-v8a"
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled false
             }
         }
     }
