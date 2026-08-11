@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.18.1)
 project(snakegame)
 
-# Указываем путь к заголовочным файлам raylib
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/raylib/include)
+# Указываем точный путь к папке include с учетом вложенности в src/main/cpp/
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/main/cpp/raylib/include)
 
 # Создаем разделяемую библиотеку из вашего файла main.cpp
 add_library(
