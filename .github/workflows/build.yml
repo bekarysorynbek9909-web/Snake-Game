@@ -1,28 +1,27 @@
-name: Build Android App
+name: Build Android AAB
 
-on:
-  push:
-    branches: [ main, master ]
+on: [push]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Set up JDK 17
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '17'
 
       - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
+        run: chmod +x ./gradlew
 
       - name: Decode Keystore
         run: |
+          mkdir -p app
           echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > app/release-key.jks
 
       - name: Build Android Release AAB
@@ -33,7 +32,7 @@ jobs:
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
 
       - name: Upload AAB Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: release-aab
           path: app/build/outputs/bundle/release/app-release.aab
