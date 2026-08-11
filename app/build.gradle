@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace 'com.bekarys.snakecube'
+    namespace "com.bekarys.snakecube"
     compileSdk 33
 
     defaultConfig {
